@@ -1,0 +1,51 @@
+{
+  "name": "mkjm-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --watch --mode development ",
+    "start": "node ./dist/server.js",
+    "watch": "nodemon ./dist/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test2": "node ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mephet/mkjm-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mephet/mkjm-backend/issues"
+  },
+  "homepage": "https://github.com/mephet/mkjm-backend#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.18.9",
+    "nodemon-webpack-plugin": "^4.0.7",
+    "npm-run-all": "^4.1.5",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.2",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "@babel/register": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "cron": "^1.7.1",
+    "dotenv": "^6.2.0",
+    "express": "^4.17.1",
+    "node-fetch": "^2.3.0",
+    "pg": "^7.10.0",
+    "winston": "^3.2.1"
+  }
+}
