@@ -46,6 +46,7 @@
     "express": "^4.17.1",
     "node-fetch": "^2.3.0",
     "pg": "^7.10.0",
+    "python-shell": "^1.0.8",
     "winston": "^3.2.1"
   }
 }

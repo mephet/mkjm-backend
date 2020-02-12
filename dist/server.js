@@ -106,7 +106,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var pg__
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nvar routes = function routes(app) {\n  app.use(function (req, res, next) {\n    //Middleware support\n    next();\n  });\n  app.get('/', function (req, res) {\n    res.send(\"Invalid Endpoint\");\n  });\n  app.get('/test', function (req, res) {\n    res.send(\"Invalid Endpoint test\");\n  });\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (routes);\n\n//# sourceURL=webpack:///./src/Routes/routes.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var python_shell__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! python-shell */ \"python-shell\");\n/* harmony import */ var python_shell__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(python_shell__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\nvar routes = function routes(app) {\n  app.use(function (req, res, next) {\n    //Middleware support\n    next();\n  });\n  app.get('/api/optimization', function (req, res) {\n    var pyScript = path__WEBPACK_IMPORTED_MODULE_1___default.a.join(__dirname, 'scripts/my_script.py');\n    var shell = new python_shell__WEBPACK_IMPORTED_MODULE_0__[\"PythonShell\"](pyScript);\n    shell.send({\n      'a': 'b'\n    });\n    shell.on('message', function (message) {\n      console.log(message);\n    });\n    shell.end(function (err, code, signal) {\n      if (err) throw err;\n      console.log('The exit code was: ' + code);\n      console.log('The exit signal was: ' + signal);\n      console.log('finished');\n      console.log('finished');\n    });\n    res.send(\"Done\");\n  });\n  app.get('/test', function (req, res) {\n    res.send(\"Invalid Endpoint test\");\n  });\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (routes);\n\n//# sourceURL=webpack:///./src/Routes/routes.js?");
 
 /***/ }),
 
@@ -130,7 +130,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n__webpack_require__(/*! doten
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _babel_polyfill__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/polyfill */ \"@babel/polyfill\");\n/* harmony import */ var _babel_polyfill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_polyfill__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _Utils_logger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Utils/logger */ \"./src/Utils/logger.js\");\n/* harmony import */ var _Routes_routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Routes/routes */ \"./src/Routes/routes.js\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _DB_databaseConnectionHandler__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./DB/databaseConnectionHandler */ \"./src/DB/databaseConnectionHandler.js\");\nvar express = __webpack_require__(/*! express */ \"express\");\n\n\n\nvar bodyParser = __webpack_require__(/*! body-parser */ \"body-parser\");\n\n\n\n\n\nvar staticPath = path__WEBPACK_IMPORTED_MODULE_3___default.a.join(__dirname, 'dist');\nvar app = express();\nvar port = process.env.PORT || 5000;\napp.use(bodyParser.urlencoded({\n  extended: false\n}));\napp.use(bodyParser.json());\nObject(_Routes_routes__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(app);\n_DB_databaseConnectionHandler__WEBPACK_IMPORTED_MODULE_4__[\"default\"].testConnection();\napp.listen(port, function () {\n  _Utils_logger__WEBPACK_IMPORTED_MODULE_1__[\"default\"].info(\"Listening on port \".concat(port));\n});\n\n//# sourceURL=webpack:///./src/server.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _babel_polyfill__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/polyfill */ \"@babel/polyfill\");\n/* harmony import */ var _babel_polyfill__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_polyfill__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _Utils_logger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Utils/logger */ \"./src/Utils/logger.js\");\n/* harmony import */ var _Routes_routes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Routes/routes */ \"./src/Routes/routes.js\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _DB_databaseConnectionHandler__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./DB/databaseConnectionHandler */ \"./src/DB/databaseConnectionHandler.js\");\n\n\n\nvar bodyParser = __webpack_require__(/*! body-parser */ \"body-parser\");\n\n\n\n\n\nvar staticPath = path__WEBPACK_IMPORTED_MODULE_4___default.a.join(__dirname, '/build'); // const staticPath2 = path.join(__dirname, '/build/static/')\n\nvar app = express__WEBPACK_IMPORTED_MODULE_0___default()();\nvar port = process.env.PORT || 5000;\napp.use(bodyParser.urlencoded({\n  extended: false\n}));\napp.use(bodyParser.json());\napp.use(express__WEBPACK_IMPORTED_MODULE_0___default.a[\"static\"](staticPath)); // app.use('/mkjm', express.static(staticPath2))\n\nObject(_Routes_routes__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(app);\n_DB_databaseConnectionHandler__WEBPACK_IMPORTED_MODULE_5__[\"default\"].testConnection();\napp.listen(port, function () {\n  console.log(\"Serving static files from \".concat(staticPath));\n  _Utils_logger__WEBPACK_IMPORTED_MODULE_2__[\"default\"].info(\"Listening on port \".concat(port));\n});\n\n//# sourceURL=webpack:///./src/server.js?");
 
 /***/ }),
 
@@ -197,6 +197,17 @@ eval("module.exports = require(\"path\");\n\n//# sourceURL=webpack:///external_%
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"pg\");\n\n//# sourceURL=webpack:///external_%22pg%22?");
+
+/***/ }),
+
+/***/ "python-shell":
+/*!*******************************!*\
+  !*** external "python-shell" ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"python-shell\");\n\n//# sourceURL=webpack:///external_%22python-shell%22?");
 
 /***/ }),
 
