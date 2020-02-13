@@ -6,20 +6,20 @@ from pulp import *
 class OptimizationProblem:
 
     def __init__(self, client_df, fund_df, model_df, ac_len, fund_len):
-        self.fund_list = fund_df['UT Code']
+        self.fund_list = fund_df['Fund Name']
         self.ac_len = ac_len
         self.fund_len = fund_len
         self.fund_df = fund_df.iloc[:, 1:].set_index(self.fund_list)
         self.model_df = model_df
         self.client_df = client_df
-        self.client_fund_allocaiton = pd.Series([float(x) for x in client_df['Fund Allocation']], index=client_df['UT Code'])
-        self.c_df = pd.DataFrame(self.client_fund_allocaiton, columns=['Alloc'])
-        self.frozen_status = pd.Series([str(x) for x in client_df['Frozen (Y/N)']], index=client_df['UT Code'])
-        self.f_df = pd.DataFrame(self.frozen_status, columns=['Frozen (Y/N)'])
+        self.client_fund_allocation = pd.Series([float(x) for x in client_df['Fund Allocation']], index=client_df['Fund Name'])
+        self.c_df = pd.DataFrame(self.client_fund_allocation, columns=['Alloc'])
+        self.frozen_status = pd.Series([str(x) for x in client_df['Frozen Status']], index=client_df['Fund Name'])
+        self.f_df = pd.DataFrame(self.frozen_status, columns=['Frozen Status'])
         self.fund_df = self.merge_df(self.fund_df, self.c_df, 0)
         self.fund_df = self.merge_df(self.fund_df, self.f_df, 'N')
         self.ac_list = fund_df.columns[1:1 + ac_len]
-        self.model_acs = model_df.iloc[0, 1:]
+        self.model_acs = model_df.iloc[0, 0:]
 
         self.fund_vars = []
         self.psi_vars = []
@@ -43,7 +43,7 @@ class OptimizationProblem:
         return o
     
     def __is_frozen(self, index):
-        return self.fund_df['Frozen (Y/N)'].iloc[index] == 'Y'
+        return self.fund_df['Frozen Status'].iloc[index] == 'Y'
     
     def __set_variables(self):
         for j in range(self.ac_len):
@@ -124,7 +124,7 @@ class OptimizationProblem:
 
         fund_allocation_output = {
             'Fund UT Codes': [fund for fund in self.fund_list],
-            'Frozen Status': [f for f in self.fund_df['Frozen (Y/N)']],
+            'Frozen Status': [f for f in self.fund_df['Frozen Status']],
             'Initial Allocation': [o for o in self.fund_df['Alloc']],
             'Optimized Allocation': self.optimized_allocation,
             'Allocation delta': [a for a in self.fund_delta],
